@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leanflow"
+version = "0.0.3"
+description = "A Python interface for Lean 4."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "httpx",
+    "dacite",
+    "psutil",
+    "omegaconf",
+    "loguru",
+    "regex",
+    "fastapi",
+    "uvicorn",
+    "datasets",
+    "pandas",
+    "tqdm",
+    "openai",
+    "filelock",
+    "dill",
+    "fsspec",
+    "multiprocess",
+    "starlette",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings-python",
+]
+vllm = [
+    "transformers",
+    "vllm",
+]
+
+[project.scripts]
+leanflow-eval = "leanflow.evaluate_cli:main"
+leanflow-serve = "leanflow.server_cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["leanflow*"]

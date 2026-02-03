@@ -1,0 +1,102 @@
+site_name: LeanFlow Documentation
+site_description: A flexible Python interface for Lean 4
+site_author: LeanFlow Team
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      accent: red
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # Light mode - modern off-white
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: red
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: red
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  
+  features:
+    - content.code.copy
+    - content.code.annotate
+    - navigation.expand
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - toc.follow
+  
+  font:
+    text: Open Sans
+    code: JetBrains Mono
+  
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]
+          options:
+            docstring_style: google
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+  - def_list
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/toggle.js
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Quickstart: quickstart.md
+  - User Guide:
+    - REPL: repl.md
+    - Server: server.md
+    - Evaluation: cli.md
+  - Metrics:
+    - Overview: metrics.md
+    - Custom Metrics: custom_metrics.md
+  - API Reference:
+    - REPL: api/repl.md
+    - Server: api/server.md
+    - Client: api/client.md
+    - Errors: api/errors.md
+    - Metrics: api/metrics.md
+    # - Evaluation: api/cli.md
