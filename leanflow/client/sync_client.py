@@ -1,8 +1,7 @@
-import asyncio
 from typing import Union, Optional
 
 from .client import Client
-from ..utils import Environment, LeanError
+from ..utils import Environment, LeanError, _AsyncRunner
 
 class SyncClient:
     """Synchronous wrapper around the Client class. Provides a blocking API for interacting with a LeanFlow server without needing to use async/await.
@@ -25,21 +24,12 @@ class SyncClient:
             timeout (int): Request timeout in seconds.
         """
         self._client = Client(base_url, timeout)
-        self._loop: Optional[asyncio.AbstractEventLoop] = None
-
-    def _get_loop(self) -> asyncio.AbstractEventLoop:
-        """Get or create the event loop."""
-        if self._loop is None or self._loop.is_closed():
-            self._loop = asyncio.new_event_loop()
-        return self._loop
+        self._runner = _AsyncRunner()
 
     def close(self):
         """Close the client connection and clean up resources."""
-        loop = self._get_loop()
-        loop.run_until_complete(self._client.close())
-        if not loop.is_closed():
-            loop.close()
-        self._loop = None
+        self._runner.run(self._client.close())
+        self._runner.close()
 
     def run(self, command: str, env: Optional[Union[Environment, int]] = None) -> Union[Environment, LeanError]:
         """Run a Lean command synchronously via the server.
@@ -51,8 +41,8 @@ class SyncClient:
         Returns:
             Environment or LeanError.
         """
-        return self._get_loop().run_until_complete(self._client.run(command, env))
-    
+        return self._runner.run(self._client.run(command, env))
+
     def run_list(self, commands: list[str], env: Optional[Union[Environment, int]] = None) -> list[Union[Environment, LeanError]]:
         """Run Lean commands synchronously via the server.
 
@@ -63,7 +53,7 @@ class SyncClient:
         Returns:
             List of results (Environment or LeanError).
         """
-        return self._get_loop().run_until_complete(self._client.run_list(commands, env))
+        return self._runner.run(self._client.run_list(commands, env))
 
     def status(self) -> bool:
         """Check server status synchronously.
@@ -71,17 +61,14 @@ class SyncClient:
         Returns:
             (bool): True if the server is running and accessible, False otherwise.
         """
-        return self._get_loop().run_until_complete(self._client.status())
+        return self._runner.run(self._client.status())
 
     def __enter__(self) -> "SyncClient":
         """Enter context manager."""
-        self._get_loop().run_until_complete(self._client.__aenter__())
+        self._runner.run(self._client.__aenter__())
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Exit context manager."""
-        loop = self._get_loop()
-        loop.run_until_complete(self._client.__aexit__(exc_type, exc_val, exc_tb))
-        if not loop.is_closed():
-            loop.close()
-        self._loop = None
+        self._runner.run(self._client.__aexit__(exc_type, exc_val, exc_tb))
+        self._runner.close()
