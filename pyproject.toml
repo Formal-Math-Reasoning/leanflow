@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "leanflow"
-version = "0.0.3"
+version = "0.0.4"
 description = "A Python interface for Lean 4."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -26,6 +26,7 @@ dependencies = [
     "fsspec",
     "multiprocess",
     "starlette",
+    "typing_extensions>=4.14.1",
 ]
 
 [project.optional-dependencies]

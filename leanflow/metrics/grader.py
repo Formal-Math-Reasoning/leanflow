@@ -196,7 +196,7 @@ class LLMGrader(LLMAsAJudge):
             elif api_client:
                 return await self._run_api_prompts(prompts, config["model"], api_client, config["sampling_params"])
             else:
-                raise LeanValueError(f"Config for model '{config["model"]}' requires `use_vllm=True` or a valid `api_config`.")
+                raise LeanValueError(f"Config for model '{config['model']}' requires `use_vllm=True` or a valid `api_config`.")
 
         bt_template = self.backtranslation_config.get("template", BACKTRANSLATE_TEMPLATE)
         comp_template = self.comparison_config.get("template", COMPARISON_TEMPLATE)

@@ -207,7 +207,7 @@ def load_metric_class(metric_name: str, config: DictConfig) -> type[Metric]:
         # Unknown metric without source file
         raise LeanValueError(
             f"Metric '{metric_name}' is not built-in and no 'source_file' was provided.\n"
-            f"Built-in metrics: {", ".join(BUILT_IN_METRICS.keys())}\n"
+            f"Built-in metrics: {', '.join(BUILT_IN_METRICS.keys())}\n"
             f"To use a custom metric, add 'source_file' to its config."
         )
 

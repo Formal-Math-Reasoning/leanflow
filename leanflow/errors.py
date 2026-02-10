@@ -49,7 +49,7 @@ class LeanBuildError(LeanFlowError):
 
         details_parts = []
         if command is not None:
-            details_parts.append(f"Command: {" ".join(command)}")
+            details_parts.append(f"Command: {' '.join(command)}")
         if return_code is not None:
             details_parts.append(f"Return code: {return_code}")
         if stdout is not None:

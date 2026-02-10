@@ -321,13 +321,13 @@ class BEq(BatchMetric):
             
             # Only generate PQ if it hasn't succeeded yet
             if not success_pq[i]:
-                pq_content = self.template.replace("{autoformalization_result}", f"{ex["header"]}\n{ex["code_PQ_P"]}\n\n{ex["code_PQ_Q"]}")
+                pq_content = self.template.replace("{autoformalization_result}", f"{ex['header']}\n{ex['code_PQ_P']}\n\n{ex['code_PQ_Q']}")
                 prompts.append(self._format_prompt(pq_content, tokenizer, use_vllm))
                 task_meta.append({"idx": i, "direction": "PQ"})
             
             # Only generate QP if it hasn't succeeded yet
             if not success_qp[i]:
-                qp_content = self.template.replace("{autoformalization_result}", f"{ex["header"]}\n{ex["code_QP_P"]}\n\n{ex["code_QP_Q"]}")
+                qp_content = self.template.replace("{autoformalization_result}", f"{ex['header']}\n{ex['code_QP_P']}\n\n{ex['code_QP_Q']}")
                 prompts.append(self._format_prompt(qp_content, tokenizer, use_vllm))
                 task_meta.append({"idx": i, "direction": "QP"})
                 

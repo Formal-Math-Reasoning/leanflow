@@ -108,7 +108,7 @@ class EquivRfl(Metric):
 
             args = self._get_args(statement_1) or self._get_args(statement_2)
             theorem_args = f"{args} " if args else ""
-            call_args = f" {args.split(":")[0].strip("()")} " if args else ""
+            call_args = f" {args.split(':')[0].strip('()')} " if args else ""
 
             template = f"{statement_1}\n\n{statement_2}\n\ntheorem thm {theorem_args}: {name1}{call_args} = {name2}{call_args} := by rfl"
 

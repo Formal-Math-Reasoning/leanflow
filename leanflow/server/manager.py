@@ -59,14 +59,14 @@ class StateManager:
         # Instantiate the manager and resolve the config once.
         manager = EnvironmentManager(repl_config)
         resolved_config = manager.resolve_config()
-        logger.success(f"Environment resolved. Project Path: {resolved_config["project_path"]}")
+        logger.success(f"Environment resolved. Project Path: {resolved_config['project_path']}")
         repl_config.update(resolved_config) # update the original config
 
         repl_pool = [REPL(**repl_config) for _ in range(workers)]
         startup_tasks = [repl._start_interactive_async() for repl in repl_pool]
         await asyncio.gather(*startup_tasks)
         if repl_config.get("header"):
-            logger.success(f"All {workers} REPL workers have been initialized with the header:\n{repl_config.get("header")}")
+            logger.success(f"All {workers} REPL workers have been initialized with the header:\n{repl_config.get('header')}")
         else:
             logger.success(f"All {workers} REPL workers have been initialized.")
         
