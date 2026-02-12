@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Any, Optional
 
+from importlib.metadata import version
 from .server import Server
 from .utils import BANNER
 from ..utils import logger
@@ -19,7 +20,7 @@ class HealthResponse(BaseModel):
     """Response model for health checks."""
     status: str
 
-app = FastAPI(title="LeanFlow Server", version="0.0.2")
+app = FastAPI(title="LeanFlow Server", version=version("leanflow"))
 
 @app.on_event("startup")
 async def startup_event():

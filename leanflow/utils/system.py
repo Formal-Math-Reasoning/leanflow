@@ -1,7 +1,4 @@
-"""System utility functions for LeanFlow."""
-
 import os
-
 
 def get_available_cpus(default: int = 1) -> int:
     """Get the number of CPUs available to the current process.

@@ -27,6 +27,14 @@ Install LeanFlow via pip:
 pip install leanflow
 ```
 
+### Install Lean 4
+
+LeanFlow requires Lean 4 to be installed on your system. Check out the [official Lean 4 installation guide](https://lean-lang.org/install/) for installation details.
+
+```bash
+curl https://elan.lean-lang.org/elan-init.sh -sSf | sh
+```
+
 ## Quickstart
 
 ### 1. Run Locally (Development)
