@@ -3,7 +3,7 @@ from typing import Union, Optional
 from omegaconf import OmegaConf
 
 from .manager import StateManager
-from ..utils import setup_logger, Environment, LeanError
+from ..utils import setup_logger, get_available_cpus, Environment, LeanError
 
 class Server:
     """Server that owns and configures the StateManager.
@@ -56,7 +56,7 @@ class Server:
             if not project_path.is_absolute():
                 repl_config_dict["project_path"] = str(Path(yaml_path).parent.resolve() / project_path)
         
-        workers = server_cfg.get("workers", 1)
+        workers = server_cfg.get("workers", get_available_cpus())
         stateless = server_cfg.get("stateless", False)
 
         state_manager = await StateManager.create(
