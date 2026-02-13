@@ -15,3 +15,7 @@ test_evaluation.py
 *dummy*.py
 *dummy*.yaml
 example.py
+/.vs
+/.gitignore
+/.gitignore
+/.gitignore

@@ -104,3 +104,4 @@ Special thanks to the **[Lean community](https://github.com/leanprover-community
 
 LeanFlow is released under the [MIT License](https://github.com/Formal-Math-Reasoning/leanflow/blob/main/LICENSE).
 
+Disclaimer: This open source project is not an official Huawei product, Huawei is not expected to provide support for this project.
