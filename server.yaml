@@ -1,0 +1,12 @@
+server:
+  host: "localhost"
+  port: 8000
+  stateless: true
+
+repl:
+  lean_version: "4.24.0"
+  timeout: 300
+  lake_cache_timeout: null
+  max_memory_mb: 8192
+  header: |
+    import Mathlib

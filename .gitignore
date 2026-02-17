@@ -1,0 +1,21 @@
+.pytest_cache
+__pycache__
+build/
+*.egg-info
+DS_Store*
+*.pyc
+*.cast
+
+# tests
+tests/
+test_data.json
+test_evaluate_cli.py
+test_evaluate_config.yaml
+test_evaluation.py
+*dummy*.py
+*dummy*.yaml
+example.py
+/.vs
+/.gitignore
+/.gitignore
+/.gitignore

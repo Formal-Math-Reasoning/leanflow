@@ -1,0 +1,317 @@
+/* Modern theme for LeanFlow docs with dark mode support */
+
+/* Light mode variables */
+:root {
+    --md-default-bg-color: #fafaf9;
+    --md-default-fg-color: #18181b;
+    --md-code-bg-color: #f4f4f5;
+    --md-primary-fg-color: #dc2626;
+    --card-bg: white;
+    --card-border: #e5e7eb;
+    --toggle-bg: #f4f4f5;
+    --toggle-border: #e4e4e7;
+}
+
+/* Dark mode variables */
+[data-md-color-scheme="slate"] {
+    --md-default-bg-color: #1a1a1a;
+    --md-default-fg-color: #e4e4e7;
+    --md-code-bg-color: #262626;
+    --card-bg: #262626;
+    --card-border: #404040;
+    --toggle-bg: #3f3f46;
+    --toggle-border: #52525b;
+}
+
+/* Smooth background */
+body {
+    background-color: var(--md-default-bg-color);
+}
+
+/* Slim content - max width for better readability */
+.md-content__inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Remove card styling from main content - blend with background */
+.md-content article {
+    background: transparent;
+    padding: 1rem 2rem;
+}
+
+/* Modern code blocks */
+.md-typeset code {
+    border-radius: 4px;
+    padding: 0.2em 0.4em;
+    background-color: var(--md-code-bg-color);
+}
+
+.md-typeset pre {
+    border-radius: 8px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+}
+
+/* Tabs styling */
+.tabbed-set {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+/* Feature cards on homepage - more compact */
+.feature-card {
+    background: var(--card-bg);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+    transition: all 0.2s ease;
+    border: 1px solid var(--card-border);
+}
+
+.feature-card:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transform: translateY(-2px);
+}
+
+.feature-card h3 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feature-card p {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.feature-icon {
+    font-size: 1.5rem;
+    display: inline;
+}
+
+/* Admonitions modern styling */
+.md-typeset .admonition {
+    border-radius: 8px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.05);
+}
+
+/* Button styling */
+.md-button {
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    transition: all 0.2s ease;
+}
+
+.md-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Hero section */
+.hero {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #f48950 0%, #c53f3f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    color: #71717a;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+[data-md-color-scheme="slate"] .hero p {
+    color: #a1a1aa;
+}
+
+/* Installation command styling */
+.install-command {
+    background: #18181b;
+    color: #fafafa;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    margin: 1rem 0;
+    display: inline-block;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.2);
+}
+
+/* Custom API Toggle Slider */
+.api-toggle {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+}
+
+.toggle-controls {
+    display: inline-flex;
+    background: var(--toggle-bg);
+    padding: 4px;
+    border-radius: 8px;
+    position: relative;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--toggle-border);
+}
+
+.toggle-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #71717a;
+    z-index: 2;
+    position: relative;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.toggle-btn.active {
+    color: var(--md-default-fg-color);
+}
+
+.toggle-btn:hover:not(.active) {
+    color: #52525b;
+}
+
+[data-md-color-scheme="slate"] .toggle-btn:hover:not(.active) {
+    color: #a1a1aa;
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    background: var(--card-bg);
+    border-radius: 6px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 1;
+}
+
+.toggle-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.toggle-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.toggle-icon {
+    font-size: 1.1em;
+}
+
+/* Grid layout adjustments for feature cards - more compact */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+/* Fix for Sidebar Active Item Color - Hardcoded Force */
+.md-nav__item .md-nav__link--active {
+    color: #dc2626 !important;
+    /* Hardcoded cranberry red */
+    font-weight: 700 !important;
+}
+
+/* Ensure hover state on the active item stays red */
+.md-nav__item .md-nav__link--active:hover {
+    color: #dc2626 !important;
+}
+
+/* Typing Animation */
+.typing-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    height: 2rem;
+    /* Reserve height to prevent layout shift */
+}
+
+.typing-effect {
+    overflow: hidden;
+    border-right: .15em solid #dc2626;
+    white-space: nowrap;
+    margin: 0;
+    letter-spacing: 0.05em;
+    font-size: 1.5rem;
+    /* Increased font size */
+    font-weight: 700;
+    display: inline-block;
+    max-width: fit-content;
+    animation:
+        typing 6s steps(40, end) infinite,
+        /* Slower (6s) and infinite loop */
+        blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+
+    0%,
+    10% {
+        width: 0
+    }
+
+    40%,
+    90% {
+        width: 100%
+    }
+
+    /* Hold text visible for longer */
+    100% {
+        width: 0
+    }
+
+    /* Reset */
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #dc2626;
+    }
+}
